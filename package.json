@@ -8,6 +8,9 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
+  "prettier": {
+    "singleQuote": true
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SZun/mongodb-scraper.git"
