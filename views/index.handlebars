@@ -7,13 +7,16 @@
 
 <div class="card">
   <div class="card-header">
-    Featured
+    <h1><strong><a href=""></a></strong></h1>
   </div>
   <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <a class="card-text" href=""></a>
+    <button href="#" class="btn btn-primary">SAVE ARTICLE!</button>
   </div>
+</div>
+
+<div>
+  <div id="article"></div>
 </div>
 
 <script
@@ -26,7 +29,25 @@
     $("#scrape").on("click", async function(e){
       e.preventDefault();
       const articles = await axios.post('/api/scrape', null);
-      console.log(articles);
+      for (var i = 0; i < 10; i++) {
+        let b = i + 10;
+        const headline = articles.data.scrape[i].headline
+        const link = articles.data.scrape[i].link
+        const summary = articles.data.scrape[b].summary;
+        var article = 
+        `<div class="card">
+          <div class="card-header">
+            <h1><strong><a href="${link}">
+              ${headline}
+            </a></strong></h1>
+          </div>
+          <div class="card-body">
+            <a class="card-text" href="${link}">${summary}</a>
+            <button href="#" class="btn btn-primary">SAVE ARTICLE!</button>
+          </div>
+        </div>`
+        $('#article').append(article);
+      }
     });
   });
 </script>
