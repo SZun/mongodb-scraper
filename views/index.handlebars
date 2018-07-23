@@ -5,16 +5,6 @@
   </div>
 </div>
 
-<div class="card">
-  <div class="card-header">
-    <h1><strong><a href=""></a></strong></h1>
-  </div>
-  <div class="card-body">
-    <a class="card-text" href=""></a>
-    <button href="#" class="btn btn-primary">SAVE ARTICLE!</button>
-  </div>
-</div>
-
 <div>
   <div id="article"></div>
 </div>
@@ -37,12 +27,12 @@
         var article = 
         `<div class="card">
           <div class="card-header">
-            <h1><strong><a href="${link}">
+            <h1><strong><a href="${link}" target="_blank">
               ${headline}
             </a></strong></h1>
           </div>
           <div class="card-body">
-            <a class="card-text" href="${link}">${summary}</a>
+            <a class="card-text" href="${link}" target="_blank">${summary}</a>
             <button href="#" class="btn btn-primary">SAVE ARTICLE!</button>
           </div>
         </div>`

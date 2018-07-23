@@ -39,7 +39,7 @@ async function scrapeNews(res, results) {
           .attr('href');
         const data = {
           headline: headline,
-          link: link
+          link: `http://www.foxnews.com/${link}`
         };
         results.push(data);
       });
