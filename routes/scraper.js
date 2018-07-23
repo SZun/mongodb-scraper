@@ -24,10 +24,10 @@ router.get('/', async (req, res) => {
   }
 });
 
-async function scrapeNews(res, results) {
+function scrapeNews(res, results) {
   request(
     'http://www.foxnews.com/category/tech/topics/computers.html',
-    (error, response, html) => {
+    async (error, response, html) => {
       const $ = cheerio.load(html);
       $('h2.title').each(function(i, element) {
         const headline = $(element)
@@ -39,7 +39,7 @@ async function scrapeNews(res, results) {
           .attr('href');
         const data = {
           headline: headline,
-          link: link
+          link: `http://www.foxnews.com/${link}`
         };
         results.push(data);
       });
@@ -54,7 +54,8 @@ async function scrapeNews(res, results) {
         results.push(data);
       });
       try {
-        const scrape = new Scrape({ scrape: results });
+        let scrape = await new Scrape({ scrape: results });
+        await scrape.save();
         res.send(scrape);
       } catch (err) {
         console.log(`Error: ${err.message}`);
