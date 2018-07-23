@@ -6,14 +6,10 @@ const request = require('request');
 
 const Scrape = require('../models/scrape');
 
-const results = [];
-
 router.post('/', async (req, res) => {
   try {
-    scrapeNews();
-    let scrape = new Scrape({ scrape: results });
-    scrape = await scrape.save();
-    res.send(scrape);
+    const results = [];
+    scrapeNews(res, results);
   } catch (err) {
     console.log(`Error: ${err.message}`);
   }
@@ -28,7 +24,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-function scrapeNews() {
+async function scrapeNews(res, results) {
   request(
     'http://www.foxnews.com/category/tech/topics/computers.html',
     (error, response, html) => {
@@ -57,7 +53,12 @@ function scrapeNews() {
         };
         results.push(data);
       });
-      console.log(results);
+      try {
+        const scrape = new Scrape({ scrape: results });
+        res.send(scrape);
+      } catch (err) {
+        console.log(`Error: ${err.message}`);
+      }
     }
   );
 }

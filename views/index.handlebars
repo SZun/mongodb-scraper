@@ -23,8 +23,10 @@
 
 <script>
   $(document).ready(function(){
-    $("#scrape").on("click", function(e){
+    $("#scrape").on("click", async function(e){
       e.preventDefault();
+      const articles = await axios.post('/api/scrape', null);
+      console.log(articles);
     });
   });
 </script>
