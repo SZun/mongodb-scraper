@@ -61,3 +61,5 @@ function scrapeNews() {
     }
   );
 }
+
+module.exports = router;

@@ -1,4 +1,4 @@
-module.exports = async function(mongoose) {
+module.exports = async mongoose => {
   try {
     const connection = await mongoose.connect(
       'mongodb://localhost/mongodb_scraper_hw'
