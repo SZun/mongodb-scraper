@@ -17,6 +17,7 @@
 <script>
   $(document).ready(function(){
     $("#scrape").on("click", async function(e){
+      $('#article').empty()
       e.preventDefault();
       const articles = await axios.post('/api/scrape', null);
       for (var i = 0; i < 10; i++) {
