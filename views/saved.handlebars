@@ -2,16 +2,16 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+        <h5 class="modal-title">Leave a comment!</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>Modal body text goes here.</p>
+        <textarea id="comment" placeholder="Your Comment Here!" class="w-100"></textarea>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" id="saveCmntBtn">Save Comment</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -62,8 +62,12 @@
     $('.commentBtn').on('click', function(e) {
       e.preventDefault();
       const articleId = $(this).attr('key')
-      console.log(articleId)
-      {{!-- $('.modal').modal('toggle') --}}
+      $('.modal').modal('toggle')
+      $('#saveCmntBtn').on('click', function(e) {
+        e.preventDefault();
+        const note = $('#comment').val().trim();
+        $('.modal').modal('toggle');
+      })
     })
   })
 </script>
