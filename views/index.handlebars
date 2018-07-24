@@ -9,10 +9,7 @@
   <div id="article"></div>
 </div>
 
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
 <script>
   $(document).ready(function(){
@@ -34,11 +31,32 @@
           </div>
           <div class="card-body">
             <a class="card-text" href="${link}" target="_blank">${summary}</a>
-            <button href="#" class="btn btn-primary">SAVE ARTICLE!</button>
+            <button class="btn btn-primary saveBtn" headline="${headline}" link="${link}" summary="${summary}">
+              SAVE ARTICLE!
+            </button>
           </div>
         </div>`
         $('#article').append(article);
       }
+      $(".saveBtn").on("click", async function(e){
+        e.preventDefault();
+        const header = $(this).attr('headline');
+        const anchor = $(this).attr('link');
+        const copy = $(this).attr('summary')
+        const savedArticle = {
+          headline: header,
+          link: anchor,
+          summary: copy
+        }
+        try {
+          const newArticle = await axios.post('/api/articles', savedArticle);
+          console.log(newArticle);
+        }
+        catch (err) {
+          console.log(`Error: ${err.message}`)
+        }
+      });
     });
+
   });
 </script>
