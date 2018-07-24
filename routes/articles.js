@@ -16,9 +16,9 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const article = await Article.find();
+    const article = await Article.find().populate('Notes');
     res.send(article);
   } catch (err) {
     console.log(`Error: ${err.message}`);
