@@ -1,16 +1,69 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4 text-center">Saved Articles</h1>
   </div>
 </div>
 
-<div class="card">
-  <div class="card-header">
-    Featured
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
+<div>
+  <div id="article"></div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<script>
+  $(document).ready(async () => {
+    const articles = await axios.get('api/articles');
+    for (var i = 0; i < articles.data.length; i++) {
+      const headline = articles.data[i].headline;
+      const link = articles.data[i].link;
+      const summary = articles.data[i].summary;
+      const key = articles.data[i]._id;
+      var article = 
+        `<div class="card">
+          <div class="card-header">
+            <h1><strong><a href="${link}" target="_blank">
+              ${headline}
+            </a></strong></h1>
+          </div>
+          <div class="card-body">
+            <a class="card-text" href="${link}" target="_blank">${summary}</a>
+            <button class="btn btn-primary commentBtn" key="${key}">
+              Comment
+            </button>
+            <button class="btn btn-primary deleteBtn">
+              Delete Article
+            </button>
+          </div>
+        </div>`
+        $('#article').append(article);
+    }
+
+    $('.commentBtn').on('click', function(e) {
+      e.preventDefault();
+      const articleId = $(this).attr('key')
+      console.log(articleId)
+      {{!-- $('.modal').modal('toggle') --}}
+    })
+  })
+</script>
