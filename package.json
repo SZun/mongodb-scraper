@@ -8,8 +8,9 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "prettier": {
-    "singleQuote": true
+  "engines": {
+    "node": "10.6.0",
+    "npm": "6.2.0"
   },
   "repository": {
     "type": "git",
