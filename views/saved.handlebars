@@ -81,9 +81,12 @@
             const summary = articles.data[i].summary;
             const key = articles.data[i]._id;
             const allNotes = articles.data[i].notes
+            let notesArr = []
             for (var j = 0; j < allNotes.length; j++){
-              var notez = allNotes[j].split(',').join('')
+              var notez = allNotes[j];
+              notesArr.push(notez);
             }
+            const banan = notesArr.join(' ');
             var article = 
               `<div class="card">
                 <div class="card-header">
@@ -93,20 +96,18 @@
                 </div>
                 <div class="card-body">
                   <a class="card-text" href="${link}" target="_blank">${summary}</a>
-                  <ul> Comments:
-                    <li>
-                      ${notez}
-                    </li>
-                  </ul>
                   <button class="btn btn-primary commentBtn" key="${key}">
                     Comment
                   </button>
+                  <h6>Comments:</h6>
+                  <p>${banan}</p>
                   <button class="btn btn-primary deleteBtn">
                     Delete Article
                   </button>
                 </div>
               </div>`
               $('#article').append(article);
+              notesArr = [];
           }
         }
         catch (err) {
