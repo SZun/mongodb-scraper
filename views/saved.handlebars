@@ -73,8 +73,8 @@
             id: articleId
           }
           const populatedArticle = await axios.post('/api/notes', newNote);
-          const article = await axios.get(`/api/articles`)
-          console.log(article)
+          const articles = await axios.get('api/articles');
+          console.log(articles)
         }
         catch (err) {
           console.log(`Error: ${err.message}`);

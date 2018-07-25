@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
     });
     const article = await Article.findByIdAndUpdate(
       { _id: req.body.id },
-      { $push: { notes: note._id } },
+      { $push: { notes: note.note } },
       { new: true }
     );
     res.send(article);

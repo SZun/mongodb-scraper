@@ -18,8 +18,8 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const article = await Article.find().populate('note');
-    res.json(article);
+    const article = await Article.find();
+    res.send(article);
   } catch (err) {
     console.log(`Error: ${err.message}`);
   }
