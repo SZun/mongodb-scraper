@@ -1,23 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const Note = require('../models/note');
+const Article = require('../models/article');
 
 router.post('/', async (req, res) => {
   try {
-    let note = new Note({
+    const note = await new Note({
       note: req.body.note
     });
-    note = await note.save();
-    res.send(note);
-  } catch (err) {
-    console.log(`Error: ${err.message}`);
-  }
-});
-
-router.get('/', async (req, res) => {
-  try {
-    const note = await note.find();
-    res.send(note);
+    const article = await Article.findByIdAndUpdate(
+      { _id: req.body.id },
+      { $push: { notes: note.note } },
+      { new: true }
+    );
+    res.send(article);
   } catch (err) {
     console.log(`Error: ${err.message}`);
   }
