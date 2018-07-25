@@ -58,7 +58,7 @@
                   <button class="btn btn-primary commentBtn" key="${key}">
                     Comment
                   </button>
-                  <button class="btn btn-primary deleteBtn">
+                  <button class="btn btn-primary deleteBtn" key="${key}">
                     Delete Article
                   </button>
                   <h6>Comments:</h6>
@@ -68,6 +68,13 @@
               $('#article').append(article);
               notesArr = [];
           }
+
+    $('.deleteBtn').on('click',function(e){
+      e.preventDefault();
+      const id = $(this).attr('key')
+      axios.delete(`/api/articles/${id}`);
+      location.reload();
+    })
 
     $('.commentBtn').on('click', function(e) {
       e.preventDefault();
@@ -109,7 +116,7 @@
                   <button class="btn btn-primary commentBtn" key="${key}">
                     Comment
                   </button>
-                  <button class="btn btn-primary deleteBtn">
+                  <button class="btn btn-primary deleteBtn" key="${key}">
                     Delete Article
                   </button>
                   <h6>Comments:</h6>
@@ -119,6 +126,12 @@
               $('#article').append(article);
               notesArr = [];
           }
+          $('.deleteBtn').on('click',function(e){
+            e.preventDefault();
+            const id = $(this).attr('key')
+            axios.delete(`/api/articles/${id}`);
+            location.reload();
+          })
         }
         catch (err) {
           console.log(`Error: ${err.message}`);

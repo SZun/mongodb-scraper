@@ -25,4 +25,13 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.delete('/:id', async (req, res) => {
+  try {
+    const article = await Article.findByIdAndRemove(req.params.id);
+    res.send(article);
+  } catch (err) {
+    console.log(`Error: ${err.message}`);
+  }
+});
+
 module.exports = router;
