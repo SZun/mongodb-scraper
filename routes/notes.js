@@ -9,12 +9,12 @@ router.post('/', async (req, res) => {
       note: req.body.note
     });
     async () => {
-      const populatedNote = await Article.findByIdAndUpdate(
+      const article = await Article.findByIdAndUpdate(
         { _id: req.body.id },
         { $push: { notes: note._id } },
         { new: true }
       );
-      res.send(populatedNote);
+      res.send(article);
     };
   } catch (err) {
     console.log(`Error: ${err.message}`);

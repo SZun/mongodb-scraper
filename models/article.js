@@ -18,7 +18,7 @@ const articleSchema = new mongoose.Schema({
   },
   notes: [
     {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Note'
     }
   ]

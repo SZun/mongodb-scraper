@@ -63,10 +63,21 @@
       e.preventDefault();
       const articleId = $(this).attr('key')
       $('.modal').modal('toggle')
-      $('#saveCmntBtn').on('click', function(e) {
-        e.preventDefault();
-        const note = $('#comment').val().trim();
-        $('.modal').modal('toggle');
+      $('#saveCmntBtn').on('click', async function(e) {
+        try {
+          e.preventDefault();
+          const note = $('#comment').val().trim();
+          $('.modal').modal('toggle');
+          const newNote = {
+            note: note,
+            id: articleId
+          }
+          const populatedArticle = await axios.post('/api/notes', newNote);
+          console.log(populatedArticle);
+        }
+        catch (err) {
+          console.log(`Error: ${err.message}`);
+        }
       })
     })
   })
