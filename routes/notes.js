@@ -8,14 +8,12 @@ router.post('/', async (req, res) => {
     const note = await new Note({
       note: req.body.note
     });
-    async () => {
-      const article = await Article.findByIdAndUpdate(
-        { _id: req.body.id },
-        { $push: { notes: note._id } },
-        { new: true }
-      );
-      res.send(article);
-    };
+    const article = await Article.findByIdAndUpdate(
+      { _id: req.body.id },
+      { $push: { notes: note._id } },
+      { new: true }
+    );
+    res.send(article);
   } catch (err) {
     console.log(`Error: ${err.message}`);
   }
