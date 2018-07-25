@@ -74,7 +74,40 @@
           }
           const populatedArticle = await axios.post('/api/notes', newNote);
           const articles = await axios.get('api/articles');
-          console.log(articles)
+          $('#article').empty();
+          for (var i = 0; i < articles.data.length; i++) {
+            const headline = articles.data[i].headline;
+            const link = articles.data[i].link;
+            const summary = articles.data[i].summary;
+            const key = articles.data[i]._id;
+            const allNotes = articles.data[i].notes
+            for (var j = 0; j < allNotes.length; j++){
+              var notez = allNotes[j].split(',').join('')
+            }
+            var article = 
+              `<div class="card">
+                <div class="card-header">
+                  <h1><strong><a href="${link}" target="_blank">
+                    ${headline}
+                  </a></strong></h1>
+                </div>
+                <div class="card-body">
+                  <a class="card-text" href="${link}" target="_blank">${summary}</a>
+                  <ul> Comments:
+                    <li>
+                      ${notez}
+                    </li>
+                  </ul>
+                  <button class="btn btn-primary commentBtn" key="${key}">
+                    Comment
+                  </button>
+                  <button class="btn btn-primary deleteBtn">
+                    Delete Article
+                  </button>
+                </div>
+              </div>`
+              $('#article').append(article);
+          }
         }
         catch (err) {
           console.log(`Error: ${err.message}`);
