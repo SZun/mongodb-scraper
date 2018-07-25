@@ -19,9 +19,9 @@
 </div>
 
 
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid bg-dark">
   <div class="container">
-    <h1 class="display-4 text-center">Saved Articles</h1>
+    <h1 class="display-4 text-center text-danger">Saved Articles</h1>
   </div>
 </div>
 
@@ -47,22 +47,22 @@
             }
             const banan = notesArr.join(' ');
             var article = 
-              `<div class="card">
-                <div class="card-header">
-                  <h1><strong><a href="${link}" target="_blank">
+              `<div class="card bg-dark border border-white">
+                <div class="card-header border border-white">
+                  <h1><strong><a href="${link}" target="_blank" class="text-danger">
                     ${headline}
                   </a></strong></h1>
                 </div>
-                <div class="card-body">
-                  <a class="card-text" href="${link}" target="_blank">${summary}</a>
-                  <button class="btn btn-primary commentBtn" key="${key}">
+                <div class="card-body border border-white">
+                  <a class="card-text text-danger" href="${link}" target="_blank">${summary}</a>
+                  <button class="btn btn-danger commentBtn text-white" key="${key}">
                     Comment
                   </button>
-                  <button class="btn btn-primary deleteBtn" key="${key}">
+                  <button class="btn btn-danger deleteBtn" key="${key}">
                     Delete Article
                   </button>
-                  <h6>Comments:</h6>
-                  <p>${banan}</p>
+                  <h6 class="text-white">Comments:</h6>
+                  <p class="text-white">${banan}</p>
                 </div>
               </div>`
               $('#article').append(article);
@@ -105,22 +105,22 @@
             }
             const banan = notesArr.join(' ');
             var article = 
-              `<div class="card">
-                <div class="card-header">
-                  <h1><strong><a href="${link}" target="_blank">
+              `<div class="card bg-dark border border-white">
+                <div class="card-header border border-white">
+                  <h1><strong><a href="${link}" target="_blank" class="text-danger">
                     ${headline}
                   </a></strong></h1>
                 </div>
-                <div class="card-body">
-                  <a class="card-text" href="${link}" target="_blank">${summary}</a>
-                  <button class="btn btn-primary commentBtn" key="${key}">
+                <div class="card-body border border-white">
+                  <a class="card-text text-danger" href="${link}" target="_blank">${summary}</a>
+                  <button class="btn btn-danger commentBtn text-white" key="${key}">
                     Comment
                   </button>
-                  <button class="btn btn-primary deleteBtn" key="${key}">
+                  <button class="btn btn-danger deleteBtn" key="${key}">
                     Delete Article
                   </button>
-                  <h6>Comments:</h6>
-                  <p>${banan}</p>
+                  <h6 class="text-white">Comments:</h6>
+                  <p class="text-white">${banan}</p>
                 </div>
               </div>`
               $('#article').append(article);

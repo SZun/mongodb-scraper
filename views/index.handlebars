@@ -1,7 +1,7 @@
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid bg-dark">
   <div class="container">
-    <h1 class="display-4 text-center">MongoDB Scraper</h1>
-    <p class="lead text-center">News Edition</p>
+    <h1 class="display-4 text-center text-danger">MongoDB Scraper</h1>
+    <p class="lead text-center text-white">Fake News Edition</p>
   </div>
 </div>
 
@@ -30,15 +30,15 @@
         const link = articles.data.scrape[i].link
         const summary = articles.data.scrape[b].summary;
         var article = 
-        `<div class="card">
-          <div class="card-header">
-            <h1><strong><a href="${link}" target="_blank">
+        `<div class="card bg-dark border border-white">
+          <div class="card-header border border-white">
+            <h1><strong><a href="${link}" target="_blank" class="text-danger">
               ${headline}
             </a></strong></h1>
           </div>
-          <div class="card-body">
-            <a class="card-text" href="${link}" target="_blank">${summary}</a>
-            <button class="btn btn-primary saveBtn" headline="${headline}" link="${link}" summary="${summary}">
+          <div class="card-body border border-white">
+            <a class="card-text text-white" href="${link}" target="_blank">${summary}</a>
+            <button class="btn btn-danger text-white saveBtn" headline="${headline}" link="${link}" summary="${summary}">
               SAVE ARTICLE!
             </button>
           </div>
